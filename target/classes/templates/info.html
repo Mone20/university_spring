@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+|FirstName:<td th:if="${worker.firstName}" th:utext="${worker.firstName}">...</td>
+|LastName:<td th:if="${worker.lastName}"th:utext="${worker.lastName}">...</td>
+|MiddleName:<td th:if="${worker.middleName}" th:utext="${worker.middleName}">...</td>
+|BirthDate:<td th:if="${worker.birthDate}" th:utext="${worker.birthDate}">...</td>
+|Position:<td  th:if="${worker.position}" th:utext="${worker.position.getPosition()}">...</td>
+|Degree:<td  th:if="${worker.degree}"  th:utext="${worker.degree.getDegree()}">...</td>
+|Salery:<td th:if="${worker.salery}" th:utext="${worker.salery}">...</td>
+|Boss:<td ><a th:if="${worker.parentId}"  th:href="@{/info(id=${worker.parentId})}"  th:utext="${boss.lastName}+${boss.firstName}+${boss.birthDate}"></a>...</td>
+<td> <a th:href="@{/updateWorker(id=${worker.id})}">Update</a>...</td>
+<td> <a th:href="@{/delete(id=${worker.id})}">Delete</a>...</td>
+<a href="/workers">workers list page</a>
+</body>
+</html>

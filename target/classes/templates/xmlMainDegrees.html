@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+
+
+<form th:action="@{/xmlDegrees/create}"
+      method="POST">
+    <input type="submit" value="Create XML" />
+</form>
+<div>
+    <form method="POST" enctype="multipart/form-data" action="/xmlDegrees">
+        <table>
+            <tr><td>File to upload:</td><td><input type="file" name="file" /></td></tr>
+            <tr><td></td><td><input type="submit" value="Upload" /></td></tr>
+        </table>
+
+    </form>
+</div>
+
+<div th:if="${loadMessage}" th:utext="${loadMessage}"
+     style="color:blue;font-style:italic;">
+    ...
+</div>
+<a href="/">main page</a>
+</body>
+</html>

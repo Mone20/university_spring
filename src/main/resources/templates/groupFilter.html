@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>Choose group for change</h1>
+<form th:action="@{/groupFilter}"
+      th:object="${groupFilter}" method="POST">
+    <div>
+        Position:
+        <select th:field="*{firstFilter}">
+            <option value="-2" label="--- Select ---"></option>
+            <option th:each="position : ${positions}"
+                    th:value="${position.id}"
+                    th:utext="${position.position}"/>
+        </select>
+    </div>
+
+    <div>
+        Degree:
+        <select th:field="*{secondFilter}">
+            <option value="-2" label="--- Select ---">  </option>
+            <option th:each="degree : ${degrees}"
+                    th:value="${degree.id}"
+                    th:utext="${degree.degree}"/>
+        </select>
+
+    </div>
+<h2>Choose salery for change</h2>
+<div>
+    <input type="text" id="salery"  name="salery" />
+</div>
+    <input type="submit" value="Change"/>
+</form>
+<a href="/workers">worker list page</a>
+</body>
+<script>
+    var numberInput=document.getElementById('salery');
+    numberInput.onblur = function() {
+        if (Number.isNaN(parseInt(this.value,10))&&this.value!="")
+        {
+            alert('Invalid salery format!');
+            this.value="";
+        }
+
+    };
+</script>
+</html>

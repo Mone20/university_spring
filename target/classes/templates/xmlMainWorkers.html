@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+
+
+    <form th:action="@{/xmlWorkers/create}"
+          th:object="${filter}" method="POST">
+        <div>
+            Position:
+            <select th:field="*{firstFilter}">
+                <option value="-2" label="--- Select ---"></option>
+                <option th:each="position : ${positions}"
+                        th:value="${position.id}"
+                        th:utext="${position.position}"/>
+            </select>
+        </div>
+
+        <div>
+            Degree:
+            <select th:field="*{secondFilter}">
+                <option value="-2" label="--- Select ---">  </option>
+                <option th:each="degree : ${degrees}"
+                        th:value="${degree.id}"
+                        th:utext="${degree.degree}"/>
+            </select>
+
+        </div>
+        <input type="submit" value="Create XML" />
+    </form>
+<div>
+    <form method="POST" enctype="multipart/form-data" action="/xmlWorkers">
+        <table>
+            <tr><td>File to upload:</td><td><input type="file" name="file" /></td></tr>
+            <tr><td></td><td><input type="submit" value="Upload" /></td></tr>
+        </table>
+
+    </form>
+</div>
+
+    <div th:if="${loadMessage}" th:utext="${loadMessage}"
+         style="color:blue;font-style:italic;">
+        ...
+    </div>
+<a href="/">main page</a>
+</body>
+</html>

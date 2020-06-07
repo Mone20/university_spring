@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Conflicts</title>
+</head>
+<body>
+<h1> Choose action for conflicts</h1>
+<form th:action="@{/conflictsDegrees}" method="post"  th:object="${listCheckBoxes}" >
+    <p><input type="checkbox" name="selectAll" id="selectAll" onclick="checkAll(this)"><label>Select All</label></p>
+    <table>
+        <tr th:each="conflict : ${conflicts}">
+            <td>
+
+                Current Entry(id=<em th:utext="${conflict.key.id}">...</em>)
+                <br>
+                |Degree: <em th:utext="${conflict.key.degree}">...</em>
+            </td>
+            <td><input th:type="checkbox" th:field="*{checkedItems}" th:value="${conflict.key.id}"></td>
+            <td>
+                Export Entry(id=<em th:utext="${conflict.value.id}">...</em>)
+                <br>
+                |Degree: <em th:utext="${conflict.value.degree}">...</em>
+            </td>
+        </tr>
+
+    </table>
+    <input type="submit" value="Accept" />
+</form>
+</body>
+<script>
+    function checkAll(obj) {
+        'use strict';
+        var items = obj.form.getElementsByTagName("input"),
+            len, i;
+        for (i = 0, len = items.length; i < len; i += 1) {
+            if (items.item(i).type && items.item(i).type === "checkbox") {
+                if (obj.checked) {
+                    items.item(i).checked = true;
+                } else {
+                    items.item(i).checked = false;
+                }
+            }
+        }
+    }
+</script>
+</html>

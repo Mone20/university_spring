@@ -1,0 +1,89 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>Add Person</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
+</head>
+<body>
+<h1>Create a Person:</h1>
+
+<!--
+   In Thymeleaf the equivalent of
+   JSP's ${pageContext.request.contextPath}/edit.html
+   would be @{/edit.html}
+   -->
+
+<form th:action="@{/addWorker}"
+      th:object="${workerForm}" method="POST">
+    First Name:
+    <input type="text" th:field="*{firstName}" />
+    <br/>
+    Last Name:
+    <input type="text" th:field="*{lastName}" />
+    <br/>
+    Middle Name:
+    <input type="text" th:field="*{middleName}" />
+    <br/>
+    Birth Date:
+    <input type="text" th:field="*{birthDate}" />
+    <br/>
+    Salery:
+    <input type="text" id="salery" th:field="*{salery}" />
+    <br/>
+
+    <div>
+        Position:
+    <select th:field="*{pId}" th:name="pId">
+        <option value="-1" label="--- Select ---"></option>
+        <option th:each="pos : ${positions}"
+                th:value="${pos.id}"
+                th:utext="${pos.position}"/>
+    </select>
+    </div>
+
+    <div>
+        Degree:
+        <select  th:field="*{dId}"  th:name="dId">
+            <option value="-1" label="--- Select ---">  </option>
+            <option th:each="degree : ${degrees}"
+                    th:value="${degree.id}"
+                    th:utext="${degree.degree}"/>
+        </select>
+
+        <div>
+            Boss:
+            <select th:field="*{parentId}">
+                <option value="-1" label="--- Select ---">  </option>
+                <option th:each="worker : ${workers}"
+                        th:value="${worker.id}"
+                        th:utext="${worker.lastName}+${worker.firstName}+${worker.birthDate}"
+                        />
+            </select>
+        </div>
+    </div>
+    <input type="submit" value="Create" />
+</form>
+
+<br/>
+
+<!-- Check if errorMessage is not null and not empty -->
+<div th:if="${errorMessage}" th:utext="${errorMessage}"
+     style="color:red;font-style:italic;">
+    ...
+</div>
+
+
+</body>
+<script>
+    var numberInput=document.getElementById('salery');
+    numberInput.onblur = function() {
+        if (Number.isNaN(parseInt(this.value,10))&&this.value!=""&&parseInt(this.value,10)<0)
+        {
+            alert('Invalid salery format!');
+            this.value="";
+        }
+
+    };
+</script>
+</html>

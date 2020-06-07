@@ -1,0 +1,65 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Workers</title>
+</head>
+<body>
+<div>
+    <form th:action="@{/workers}"
+          th:object="${filter}" method="POST">
+    <div>
+        Position:
+        <select th:field="*{firstFilter}">
+            <option value="-2" label="--- Select ---"></option>
+            <option th:each="position : ${positions}"
+                    th:value="${position.id}"
+                    th:utext="${position.position}"/>
+        </select>
+    </div>
+
+    <div>
+        Degree:
+        <select th:field="*{secondFilter}">
+            <option value="-2" label="--- Select ---">  </option>
+            <option th:each="degree : ${degrees}"
+                    th:value="${degree.id}"
+                    th:utext="${degree.degree}"/>
+        </select>
+
+    </div>
+        <input type="submit" value="Show" />
+    </form>
+    <form action="/workers/search" method="post" name="searchByName">
+        Search by lastName:
+        <input type="text" name="name">
+        <input type="submit" value="Search">
+
+    </form>
+    <table border="1">
+        <tr>
+            <th>Id</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Middle Name</th>
+            <th>BirthDate</th>
+            <th></th>
+        </tr>
+            <tr th:each ="worker : ${workers}">
+                <td th:utext="${worker.id}">...</td>
+            <td th:utext="${worker.firstName}">...</td>
+            <td th:utext="${worker.lastName}">...</td>
+            <td th:utext="${worker.middleName}">...</td>
+                <td th:utext="${worker.birthDate}">...</td>
+            <td><a th:href="@{/info(id=${worker.id})}">more...</a></td>
+        </tr>
+    </table>
+    <a href="addWorker">Add Worker</a>
+    <a href="groupFilter">Change group salery</a>
+</div>
+<a href="/">main page</a>
+<section>
+    <a href="xmlWorkers">WRITE/READ xmL</a>
+</section>
+</body>
+</html>

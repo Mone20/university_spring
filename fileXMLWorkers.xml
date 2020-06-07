@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<Workers>
+<Worker id="28">
+<lastName>Aertwertwsder</lastName>
+<firstName>Rodion</firstName>
+<middleName>R</middleName>
+<birthDate>01.07.1999</birthDate>
+<degreeId>5</degreeId>
+<positionId>6</positionId>
+<parentId>-2</parentId>
+<salery>5</salery>
+</Worker>
+<Worker id="13">
+<lastName>Rasd</lastName>
+<firstName>R</firstName>
+<middleName>R</middleName>
+<birthDate>01.07.1999</birthDate>
+<degreeId>5</degreeId>
+<positionId>6</positionId>
+<parentId>23</parentId>
+<salery>5</salery>
+</Worker>
+<Worker id="23">
+<lastName>sdyyy</lastName>
+<firstName>R</firstName>
+<middleName>R</middleName>
+<birthDate>01.07.1999</birthDate>
+<degreeId>6</degreeId>
+<positionId>6</positionId>
+<parentId>-2</parentId>
+<salery>5</salery>
+</Worker>
+</Workers>

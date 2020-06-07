@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Conflicts</title>
+</head>
+<body>
+<h1> Choose action for conflicts</h1>
+<form th:action="@{/conflictsWorkers}" method="post"  th:object="${listCheckBoxes}" >
+<p><input type="checkbox" name="selectAll" id="selectAll" onclick="checkAll(this)"><label>Select All</label></p>
+<table>
+<tr th:each="conflict : ${conflicts}">
+    <td>
+
+    Current Entry(id=<em th:utext="${conflict.key.id}">...</em>)
+    <br>
+    |FirstName: <em th:utext="${conflict.key.firstName}">...</em>
+    <br>
+    |LastName:   <em th:utext="${conflict.key.lastName}">...</em>
+    <br>
+    |MiddleName:   <em th:utext="${conflict.key.middleName}">...</em>
+    <br>
+    |BirthDate:   <em th:utext="${conflict.key.birthDate}">...</em>
+    <br>
+    |Position:<em th:if="${conflict.key.position}" th:utext="${conflict.key.position.position}">...</em>
+    <br>
+    |Degree:    <em th:if="${conflict.key.degree}" th:utext="${conflict.key.degree.degree}">...</em>
+
+    <br>
+        |PosId: <em th:if="${conflict.key.pId}" th:utext="${conflict.key.pId}">...</em>
+        <br>
+        DegId: <em th:if="${conflict.key.dId}" th:utext="${conflict.key.dId}">...</em>
+        <br>
+    |Salery:    <em th:utext="${conflict.key.salery}">...</em>
+    </td>
+    <td><input th:type="checkbox" th:field="*{checkedItems}" th:value="${conflict.key.id}"></td>
+    <td>
+    Export Entry(id=<em th:utext="${conflict.value.id}">...</em>)
+        <br>
+    |FirstName: <em th:utext="${conflict.value.firstName}">...</em>
+    <br>
+    |LastName:   <em th:utext="${conflict.value.lastName}">...</em>
+    <br>
+    |MiddleName:   <em th:utext="${conflict.value.middleName}">...</em>
+    <br>
+    |BirthDate:   <em th:utext="${conflict.value.birthDate}">...</em>
+    <br>
+    |Position:<em th:if="${conflict.value.position}" th:utext="${conflict.value.position.position}">...</em>
+    <br>
+    |Degree:    <em th:if="${conflict.value.degree}" th:utext="${conflict.value.degree.degree}">...</em>
+    <br>
+        |PosId: <em th:if="${conflict.value.pId}" th:utext="${conflict.value.pId}">...</em>
+        <br>
+        DegId: <em th:if="${conflict.value.dId}" th:utext="${conflict.value.dId}">...</em>
+        <br>
+    |Salery:    <em th:utext="${conflict.value.salery}">...</em>
+    </td>
+    </tr>
+
+</table>
+    <input type="submit" value="Accept" />
+</form>
+</body>
+<script>
+    function checkAll(obj) {
+        'use strict';
+        var items = obj.form.getElementsByTagName("input"),
+            len, i;
+        for (i = 0, len = items.length; i < len; i += 1) {
+            if (items.item(i).type && items.item(i).type === "checkbox") {
+                if (obj.checked) {
+                    items.item(i).checked = true;
+                } else {
+                    items.item(i).checked = false;
+                }
+            }
+        }
+    }
+</script>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<table border="1">
+    <tr>
+        <th>Id</th>
+        <th>Degree</th>
+        <th></th>
+        <th></th>
+    </tr>
+    <tr th:each ="degree : ${degrees}">
+        <td th:utext="${degree.id}">...</td>
+        <td th:utext="${degree.degree}">...</td>
+        <td> <a th:href="@{/deleteDegree(id=${degree.id})}">Delete</a>...</td>
+        <td> <a th:href="@{/updateDegree(id=${degree.id})}">Update</a>...</td>
+    </tr>
+</table>
+<a href="addDegree">Add Degree</a>
+<a href="/">main page</a>
+<section>
+    <a href="xmlDegrees">WRITE/READ xmL</a>
+</section>
+</body>
+</html>
